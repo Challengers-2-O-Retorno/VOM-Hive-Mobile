@@ -20,11 +20,19 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#D88318"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins":[
+      [
+        "expo-font",
+        {
+          "fonts":["./assets/fonts/BebasNeue-Regular.ttf"]
+        }
+      ]
+    ]
   }
 }
