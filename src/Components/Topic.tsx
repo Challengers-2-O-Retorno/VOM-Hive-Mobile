@@ -45,12 +45,8 @@ function Index() {
               style={styles.background}
             >
               <View style={styles.card}>
-                <Text style={{ textAlign: "center", fontSize: 30 }}>
-                  {data[index].title}
-                </Text>
-                <Text style={{ textAlign: "center", fontSize: 30 }}>
-                  {data[index].desc}
-                </Text>
+                <Text style={styles.cardText}>{data[index].title}</Text>
+                <Text style={styles.cardText}>{data[index].desc}</Text>
               </View>
             </ImageBackground>
           </View>
@@ -62,14 +58,19 @@ function Index() {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "rgba(0,0,0,0.2)",
+    backgroundColor: "rgba(0,0,0,0.4)",
     height: "100%",
     flex: 1,
-    justifyContent:"space-around",
-
+    justifyContent: "flex-end",
+    gap: 15,
+    padding: 25
   },
   background: {
     height: "100%",
+  },
+  cardText: {
+    textAlign: "center",
+    fontSize: 30,
   },
 });
 

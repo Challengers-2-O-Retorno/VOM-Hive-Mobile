@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
   },
   title:{
-    paddingVertical: 250,
+    paddingVertical: 25,
     fontSize: 30,
     textAlign: "center",
     lineHeight: 45
