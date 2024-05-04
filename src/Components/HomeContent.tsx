@@ -5,7 +5,7 @@ import Topic from "./Topic"
 export default function HomeContent() {
   return (
     <View style={styles.content}>
-      <Text>
+      <Text style={styles.title} >
         Aproveitando o máximo da técnologia para impulsionar seu crescimento
         empresarial
       </Text>
@@ -20,6 +20,11 @@ const styles = StyleSheet.create({
     width: "100%",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
-    // padding: 30,
   },
+  title:{
+    paddingVertical: 250,
+    fontSize: 30,
+    textAlign: "center",
+    lineHeight: 45
+  }
 });
