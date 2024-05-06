@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     height: 400,
     position: "relative",
     paddingHorizontal: 20,
-    paddingVertical: 40,
+    paddingVertical: 15,
   },
   robot: {
     position: "absolute",
