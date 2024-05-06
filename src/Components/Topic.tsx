@@ -14,17 +14,17 @@ function Index() {
   const data = [
     {
       title: "Agilidade",
-      desc: " asdasdqdasdqawwdas ",
+      desc: "Prepare a sua cmapanha mais rápido",
       image: require("../../assets/img/marketing-strategy.jpg"),
     },
     {
       title: "Facilidade",
-      desc: " asdasdqdasdqawwdas ",
+      desc: " Planeje as suas campanhas com sem dificuldades ",
       image: require("../../assets/img/business-people.jpg"),
     },
     {
       title: "Assertividade",
-      desc: " asdasdqdasdqawwdas ",
+      desc: "Alcance o seu publico alvo",
       image: require("../../assets/img/socialMedia.jpg"),
     },
   ];
@@ -45,8 +45,8 @@ function Index() {
               style={styles.background}
             >
               <View style={styles.card}>
-                <Text style={styles.cardText}>{data[index].title}</Text>
-                <Text style={styles.cardText}>{data[index].desc}</Text>
+                <Text style={styles.cardTitle}>{data[index].title}</Text>
+                <Text style={styles.cardDesc}>{data[index].desc}</Text>
               </View>
             </ImageBackground>
           </View>
@@ -68,10 +68,18 @@ const styles = StyleSheet.create({
   background: {
     height: "100%",
   },
-  cardText: {
+  cardTitle: {
     textAlign: "center",
     fontSize: 30,
+    fontWeight: "bold",
+    color: "#fff"
   },
+  cardDesc:{
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#fff"
+  }
 });
 
 export default Index;
