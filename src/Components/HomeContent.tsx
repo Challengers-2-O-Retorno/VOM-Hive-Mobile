@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Topic from "./Topic"
+import HomeButton from "./HomeButton";
 
 export default function HomeContent() {
   return (
@@ -10,6 +11,7 @@ export default function HomeContent() {
         empresarial
       </Text>
       <Topic/>
+      <HomeButton/>
     </View>
   );
 }

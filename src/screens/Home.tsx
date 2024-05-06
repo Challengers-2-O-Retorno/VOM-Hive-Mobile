@@ -3,7 +3,6 @@ import React from 'react'
 import HomeBanner from '../Components/HomeBanner'
 import HomeContent from '../Components/HomeContent'
 import { ScrollView } from 'react-native-gesture-handler'
-import HomeButton from '../Components/HomeButton'
 
 export function Home(){
   return (
@@ -11,7 +10,6 @@ export function Home(){
     <ScrollView style={styles.home}>
       <HomeBanner/>
       <HomeContent/>
-      <HomeButton/>
     </ScrollView>
     </>
   )

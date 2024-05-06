@@ -12,7 +12,10 @@ export default function HomeButton() {
 
 const styles = StyleSheet.create({
     button:{
+        marginTop: 40,
         padding: 20,
-        backgroundColor: "#000"
+        backgroundColor: "#D88318",
+        width: "80%",
+        height: 200
     }
 })
