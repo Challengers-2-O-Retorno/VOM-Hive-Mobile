@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View} from "react-native";
 import React from "react";
 import Topic from "./Topic";
 import HomeButton from "./HomeButton";
 
-export default function HomeContent() {
+export default function HomeContent({navigation}) {
   return (
     <View style={styles.content}>
       <Text style={styles.title}>
@@ -11,8 +11,9 @@ export default function HomeContent() {
         empresarial
       </Text>
       <Topic />
-      <View>
-        <HomeButton />
+      <View style={styles.buttonContainer} >
+        <HomeButton title={"Acesse a plataforma"} navigation={navigation}/>
+        <HomeButton title={"Conheça a equipe"} navigation={navigation}/>
       </View>
     </View>
   );
@@ -24,6 +25,7 @@ const styles = StyleSheet.create({
     width: "100%",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
+    paddingBottom: 100
   },
   title: {
     paddingVertical: 25,
@@ -34,6 +36,5 @@ const styles = StyleSheet.create({
   buttonContainer:{
     flex: 1,
     alignItems: "center",
-    width: "100%"
   }
 });

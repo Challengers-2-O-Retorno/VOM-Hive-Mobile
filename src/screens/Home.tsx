@@ -4,12 +4,12 @@ import HomeBanner from '../Components/HomeBanner'
 import HomeContent from '../Components/HomeContent'
 import { ScrollView } from 'react-native-gesture-handler'
 
-export function Home(){
+export function Home({navigation}){
   return (
     <>
     <ScrollView style={styles.home}>
       <HomeBanner/>
-      <HomeContent/>
+      <HomeContent navigation={navigation}/>
     </ScrollView>
     </>
   )

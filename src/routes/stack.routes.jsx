@@ -1,6 +1,8 @@
 import {createStackNavigator} from '@react-navigation/stack'
 import Home from '../screens/Home';
 import { useFonts } from "expo-font";
+import Login from '../screens/Login';
+import Equipe from '../screens/Equipe';
 
 const {Screen,Navigator} = createStackNavigator();
 
@@ -14,6 +16,34 @@ export function StackRotas(){
             <Screen
                 name='Home'
                 component={Home}
+                options={{
+                    headerTransparent: 'transparent',                   
+                    title:'Hive',
+                    headerTitleAlign: 'center',
+                    headerShadowVisible: 'false',
+                    headerTitleStyle:{
+                        fontFamily: 'BebasNeue',
+                        fontSize: 30
+                    }             
+                }}
+            />
+            <Screen
+                name='Login'
+                component={Login}
+                options={{
+                    headerTransparent: 'transparent',                   
+                    title:'Hive',
+                    headerTitleAlign: 'center',
+                    headerShadowVisible: 'false',
+                    headerTitleStyle:{
+                        fontFamily: 'BebasNeue',
+                        fontSize: 30
+                    }             
+                }}
+            />
+            <Screen
+                name='Equipe'
+                component={Equipe}
                 options={{
                     headerTransparent: 'transparent',                   
                     title:'Hive',
