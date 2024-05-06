@@ -1,17 +1,19 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import Topic from "./Topic"
+import Topic from "./Topic";
 import HomeButton from "./HomeButton";
 
 export default function HomeContent() {
   return (
     <View style={styles.content}>
-      <Text style={styles.title} >
+      <Text style={styles.title}>
         Aproveitando o máximo da técnologia para impulsionar seu crescimento
         empresarial
       </Text>
-      <Topic/>
-      <HomeButton/>
+      <Topic />
+      <View>
+        <HomeButton />
+      </View>
     </View>
   );
 }
@@ -23,10 +25,15 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
-  title:{
+  title: {
     paddingVertical: 25,
     fontSize: 25,
     textAlign: "center",
-    lineHeight: 45
+    lineHeight: 45,
+  },
+  buttonContainer:{
+    flex: 1,
+    alignItems: "center",
+    width: "100%"
   }
 });
