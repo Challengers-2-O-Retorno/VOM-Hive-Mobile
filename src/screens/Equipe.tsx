@@ -15,22 +15,22 @@ export default function Equipe() {
         <Membro
           avatar={"https://avatars.githubusercontent.com/gutolive09"}
           name={"Gustavo de Oliveira Azevedo"}
-          role={"Front lead"}
+          role={"Front-end lead"}
         />
         <Membro
           avatar={"https://avatars.githubusercontent.com/Mmateus106"}
           name={"Mateus Mantovani Araújo"}
-          role={"Front lead"}
+          role={"Programador back-end "}
         />
         <Membro
           avatar={"https://avatars.githubusercontent.com/Jixatos"}
           name={"Juan de Godoy"}
-          role={"Front lead"}
+          role={"Full Stack Developer"}
         />
         <Membro
           avatar={"https://avatars.githubusercontent.com/gabrielrodri33"}
           name={"Gabriel Siqueira Rodrigues"}
-          role={"Front lead"}
+          role={"Back-end Developer"}
         />
       </View>
     </ScrollView>
