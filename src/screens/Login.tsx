@@ -30,7 +30,7 @@ export default function Login() {
           />
         </View>
 
-        <Pressable style={styles.btn}>
+        <Pressable style={styles.btn}  android_ripple={{color: "#D88318", radius: 300}}>
           <Text style={styles.btnText}>Enviar</Text>
         </Pressable>
       </View>
