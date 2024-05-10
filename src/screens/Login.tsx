@@ -2,21 +2,34 @@ import { StyleSheet, TextInput, Pressable, Text, View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
+import { auth } from "../services/firebaseConfig";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-export default function Login() {
-  const [user, setUser] = useState("");
+export default function Login({navigation}) {
+  const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+
+  function login(){
+    signInWithEmailAndPassword(auth, email, pass)
+      .then((user) =>{
+        console.log(user)
+        navigation.navigate("Home")
+      })
+      .catch((error)=>{
+        console.log(error.message)
+      })
+  }
 
   return (
     <SafeAreaView style={styles.main}>
       <View style={styles.inputContainer}>
         <View>
-          <Text style={styles.inputLabel} >Usuário</Text>
+          <Text style={styles.inputLabel} >Email</Text>
           <TextInput
             style={styles.input}
-            placeholder="usuario"
-            value={user}
-            onChangeText={(value) => setUser(value)}
+            placeholder="Email"
+            value={email}
+            onChangeText={(value) => setEmail(value)}
           />
         </View>
         <View>
@@ -30,7 +43,7 @@ export default function Login() {
           />
         </View>
 
-        <Pressable style={styles.btn}  android_ripple={{color: "#D88318", radius: 300}}>
+        <Pressable style={styles.btn}  android_ripple={{color: "#D88318", radius: 300}} onPress={login} >
           <Text style={styles.btnText}>Enviar</Text>
         </Pressable>
       </View>
