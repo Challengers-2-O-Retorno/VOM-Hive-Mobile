@@ -17,8 +17,8 @@ export default function Login() {
         secureTextEntry={true}
         
         />
-        <Pressable>
-          <Text>Enviar</Text>
+        <Pressable style={styles.btn} >
+          <Text style={styles.btnText} >Enviar</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -44,6 +44,17 @@ const styles = StyleSheet.create({
     width: 300,
     padding: 15,
     borderRadius: 35
-    
+  },
+  btn:{
+    borderColor: "#fff",
+    borderWidth: 4,
+    paddingVertical: 10,
+    paddingHorizontal: 50,
+    borderRadius: 35,
+  },
+  btnText:{
+    fontSize: 20,
+    color: "#fff",
+    fontWeight: "bold"
   }
 })
