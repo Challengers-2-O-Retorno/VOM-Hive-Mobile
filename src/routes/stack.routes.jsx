@@ -32,7 +32,7 @@ export function StackRotas(){
                 component={Login}
                 options={{
                     headerTransparent: 'transparent',                   
-                    title:'Hive',
+                    title:'Login',
                     headerTitleAlign: 'center',
                     headerShadowVisible: 'false',
                     headerTitleStyle:{
