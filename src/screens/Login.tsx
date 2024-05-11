@@ -16,7 +16,9 @@ export default function Login({navigation}) {
         navigation.navigate("Home")
       })
       .catch((error)=>{
+        console.log(error.code)
         console.log(error.message)
+        alert("Ocorreu algo de errado")
       })
   }
 
