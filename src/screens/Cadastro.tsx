@@ -11,8 +11,8 @@ export default function Cadastro({navigation}) {
 
     function cadastro(){
         createUserWithEmailAndPassword(auth, email, pass)
-        .then((userCredential) =>{
-            console.log(userCredential.user);
+        .then((user) =>{
+            console.log(user.user);
             alert("Cadastrado com sucesso !")
             navigation.navigate("Login")
         })

@@ -3,7 +3,7 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import { auth } from "../services/firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
 export default function Login({navigation}) {
   const [email, setEmail] = useState("");
@@ -12,14 +12,24 @@ export default function Login({navigation}) {
   function login(){
     signInWithEmailAndPassword(auth, email, pass)
       .then((user) =>{
-        console.log(user)
+        console.log(user.user)
         navigation.navigate("Home")
       })
       .catch((error)=>{
-        console.log(error.code)
         console.log(error.message)
-        alert("Ocorreu algo de errado")
+        alert("Ocorreu algo de errado!")
       })
+  }
+
+  async function resetPass(){
+    await sendPasswordResetEmail(auth, email)
+    .then(() =>{
+      alert("Enviamos um email para você redefinir sua senha")
+    })
+    .catch((error)=>{
+      console.log(error)
+      alert("Ocorreu algum problema!")
+    })
   }
 
   return (
@@ -49,7 +59,7 @@ export default function Login({navigation}) {
           <Text style={styles.btnText}>Enviar</Text>
         </Pressable>
         <Pressable>
-        <Text style={styles.btnReset} >Esqueceu a senha ? Clique Aqui</Text>
+        <Text style={styles.btnReset} onPress={resetPass}>Esqueceu a senha ? Clique Aqui</Text>
       </Pressable>
       <Pressable>
         <Text style={styles.btnReset} onPress={()=> navigation.navigate("Cadastro")} >Não tem conta ? Cadastre-se já</Text>
