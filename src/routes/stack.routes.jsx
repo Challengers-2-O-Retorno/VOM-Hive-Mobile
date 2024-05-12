@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import Login from '../screens/Login';
 import Equipe from '../screens/Equipe';
 import Cadastro from '../screens/Cadastro';
+import { PortalRoutes } from './Portal';
 
 const {Screen,Navigator} = createStackNavigator();
 
@@ -68,6 +69,13 @@ export function StackRotas(){
                         fontFamily: 'BebasNeue',
                         fontSize: 30
                     }             
+                }}
+            />
+            <Screen
+                name="Portal"
+                component={PortalRoutes}
+                options={{
+                    headerShown: false
                 }}
             />
         </Navigator>

@@ -13,7 +13,7 @@ export default function Login({navigation}) {
     signInWithEmailAndPassword(auth, email, pass)
       .then((user) =>{
         console.log(user.user)
-        navigation.navigate("Home")
+        navigation.navigate("Portal")
       })
       .catch((error)=>{
         console.log(error.message)
