@@ -61,7 +61,7 @@ export function StackRotas(){
                 component={Cadastro}
                 options={{
                     headerTransparent: 'transparent',                   
-                    title:'Hive',
+                    title:'Cadastro',
                     headerTitleAlign: 'center',
                     headerShadowVisible: 'false',
                     headerTitleStyle:{
