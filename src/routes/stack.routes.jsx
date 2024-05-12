@@ -3,6 +3,7 @@ import Home from '../screens/Home';
 import { useFonts } from "expo-font";
 import Login from '../screens/Login';
 import Equipe from '../screens/Equipe';
+import Cadastro from '../screens/Cadastro';
 
 const {Screen,Navigator} = createStackNavigator();
 
@@ -44,6 +45,20 @@ export function StackRotas(){
             <Screen
                 name='Equipe'
                 component={Equipe}
+                options={{
+                    headerTransparent: 'transparent',                   
+                    title:'Hive',
+                    headerTitleAlign: 'center',
+                    headerShadowVisible: 'false',
+                    headerTitleStyle:{
+                        fontFamily: 'BebasNeue',
+                        fontSize: 30
+                    }             
+                }}
+            />
+            <Screen
+                name='Cadastro'
+                component={Cadastro}
                 options={{
                     headerTransparent: 'transparent',                   
                     title:'Hive',

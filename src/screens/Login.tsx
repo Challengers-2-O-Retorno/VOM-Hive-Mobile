@@ -48,7 +48,15 @@ export default function Login({navigation}) {
         <Pressable style={styles.btn}  android_ripple={{color: "#D88318", radius: 300}} onPress={login} >
           <Text style={styles.btnText}>Enviar</Text>
         </Pressable>
+        <Pressable>
+        <Text style={styles.btnReset} >Esqueceu a senha ? Clique Aqui</Text>
+      </Pressable>
+      <Pressable>
+        <Text style={styles.btnReset} onPress={()=> navigation.navigate("Cadastro")} >Não tem conta ? Cadastre-se já</Text>
+      </Pressable>
       </View>
+
+      
     </SafeAreaView>
   );
 }
@@ -89,4 +97,9 @@ const styles = StyleSheet.create({
     color: "#000",
     fontWeight: "bold",
   },
+  btnReset:{
+    textDecorationLine: "underline",
+    fontWeight:"bold",
+    fontSize: 15
+  }
 });
