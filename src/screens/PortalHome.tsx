@@ -20,33 +20,37 @@ export default function PortalHome() {
       };
 
       c.push(campaign);
-      console.log(campaign);
+    //   console.log(campaign);
     });
-    console.log("rodou")
+    // console.log("rodou");
   };
 
   useEffect(() => {
     getItems();
-    console.log(campaigns)
   }, []);
 
   return (
-    <View>
+    <View style={{flex:1}}>
       <Text>Reveja suas ultimas campanhas</Text>
-      <View>
+      <View style={{width: "100%"}}>
         <FlatList
+        style={styles.list}
           data={campaigns}
-          renderItem={({ item }) => {
-            return (
-              <View>
-                <Text>{item.name}</Text>
-              </View>
-            );
-          }}
+          renderItem={({ item }) => (
+            <View style={{width: 100, height: 100}}>
+              <Text>{item.category} aqui</Text>
+            </View>
+          )}
         />
       </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    list:{
+        flex:1,
+        width: 500,
+        backgroundColor: "#f00"
+    }
+});
