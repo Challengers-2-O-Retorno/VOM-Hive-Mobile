@@ -5,13 +5,15 @@ import {
   TextInput,
   Pressable,
   FlatList,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../services/firebaseConfig";
 
-export default function CriarCampaign() {
+export default function CriarCampaign({ navigation }) {
   const data = [
     { label: "Alimento", value: "1" },
     { label: "Imóvel", value: "2" },
@@ -21,27 +23,70 @@ export default function CriarCampaign() {
     { label: "Acessório", value: "6" },
   ];
 
-  const [value, setValue] = useState(null);
-  const [inputTags, setInputTags] = useState("");
-  const [listTags, setListTags] = useState([]);
+  const [name, setName] = useState(""); // nome da campanha
+  const [prod, setProd] = useState(""); // nome do produto
+  const [logo, setLogo] = useState(""); // link da logo
+  const [target, setTarget] = useState(""); // publico alvo
+  const [category, setCategory] = useState(null); //Dropdown
+  const [inputTags, setInputTags] = useState(""); // valor do campo para add tags
+  const [listTags, setListTags] = useState([]); // lista de tags
+
+  const addItem = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "campaigns"), {
+        name: name,
+        prod: prod,
+        logo: logo,
+        target: target,
+        category: category,
+        tags: listTags,
+      });
+
+      alert("Campanha criada com sucesso!");
+      navigation.navigate("Home");
+    } catch (error) {
+      console.log(error.code);
+      alert("Ocorreu algo de errado!");
+    }
+  };
 
   return (
     <ScrollView>
-      <Text style={styles.title} >Inicie a sua campanha</Text>
+      <Text style={styles.title}>Inicie a sua campanha</Text>
       <View>
         <Text style={styles.label}>Nome da campanha</Text>
-        <TextInput style={styles.input} />
+        <TextInput
+          style={styles.input}
+          value={name}
+          onChangeText={(value) => setName(value)}
+        />
       </View>
       <View>
         <Text style={styles.label}>Nome do produto</Text>
-        <TextInput style={styles.input} />
+        <TextInput
+          style={styles.input}
+          value={prod}
+          onChangeText={(value) => setProd(value)}
+        />
+      </View>
+      <View>
+        <Text style={styles.label}>Link da logo</Text>
+        <TextInput
+          style={styles.input}
+          value={logo}
+          onChangeText={(value) => setLogo(value)}
+        />
       </View>
       <View>
         <Text style={styles.label}>Público alvo</Text>
-        <TextInput style={styles.input} />
+        <TextInput
+          style={styles.input}
+          value={target}
+          onChangeText={(value) => setTarget(value)}
+        />
       </View>
       <View>
-        <Text style={styles.label}>Público alvo</Text>
+        <Text style={styles.label}>Categoria do produto</Text>
         <Dropdown
           style={styles.input}
           placeholderStyle={styles.placeholderStyle}
@@ -51,14 +96,14 @@ export default function CriarCampaign() {
           labelField="label"
           valueField="value"
           placeholder="Selecione a categoria"
-          value={value}
+          value={category}
           onChange={(item) => {
-            setValue(item.value);
+            setCategory(item.value);
           }}
         />
       </View>
       <View>
-        <Text style={styles.label}>Adicione as Tags</Text>
+        <Text style={styles.label}>Adicione as Tags relevantes</Text>
         <TextInput
           style={styles.input}
           value={inputTags}
@@ -68,10 +113,10 @@ export default function CriarCampaign() {
           <Text
             style={styles.addTag}
             onPress={() => {
-              // listTags.push(inputTags);
-              setListTags([...listTags, inputTags]);
-              setInputTags("");
-              console.log(listTags);
+              if (inputTags) {
+                listTags.push(inputTags);
+                setInputTags("");
+              }
             }}
           >
             Adicionar
@@ -101,18 +146,18 @@ export default function CriarCampaign() {
           />
         </View>
       </View>
-      <Pressable>
-        <Text style={styles.createBtn} >Criar</Text>
+      <Pressable onPress={addItem}>
+        <Text style={styles.createBtn}>Criar</Text>
       </Pressable>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  title:{
+  title: {
     fontSize: 30,
     marginHorizontal: 16,
-    marginVertical: 40
+    marginVertical: 40,
   },
   input: {
     margin: 16,
@@ -156,12 +201,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
   },
-  createBtn:{
+  createBtn: {
     backgroundColor: "#D88318",
     textAlign: "center",
     fontSize: 30,
     color: "#fff",
     marginHorizontal: 16,
-    marginBottom: 16
-  }
+    marginBottom: 16,
+  },
 });
