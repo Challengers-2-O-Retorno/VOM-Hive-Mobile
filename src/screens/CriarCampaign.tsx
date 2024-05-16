@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput, Pressable, FlatList } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import React, { useState } from "react";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function CriarCampaign() {
   const data = [
@@ -13,21 +14,23 @@ export default function CriarCampaign() {
   ];
 
   const [value, setValue] = useState(null);
+  const [inputTags, setInputTags] = useState("");
+  const [listTags, setListTags] = useState([]);
 
   return (
     <View>
       <Text>Criar campanha</Text>
       <View>
         <Text style={styles.label}>Nome da campanha</Text>
-        <TextInput placeholder="aaa" style={styles.input} />
+        <TextInput style={styles.input} />
       </View>
       <View>
         <Text style={styles.label}>Nome do produto</Text>
-        <TextInput placeholder="aaa" style={styles.input} />
+        <TextInput style={styles.input} />
       </View>
       <View>
         <Text style={styles.label}>Público alvo</Text>
-        <TextInput placeholder="aaa" style={styles.input} />
+        <TextInput style={styles.input} />
       </View>
       <View>
         <Text style={styles.label}>Público alvo</Text>
@@ -45,6 +48,50 @@ export default function CriarCampaign() {
             setValue(item.value);
           }}
         />
+      </View>
+      <View>
+        <Text style={styles.label}>Adicione as Tags</Text>
+        <TextInput
+          style={styles.input}
+          value={inputTags}
+          onChangeText={(value) => setInputTags(value)}
+        />
+        <Pressable>
+          <Text
+            style={styles.addTag}
+            onPress={() => {
+              listTags.push(inputTags);
+              setInputTags("");
+              console.log(listTags)
+            }}
+          >
+            Adicionar
+          </Text>
+        </Pressable>
+      </View>
+      <View style={{ height: 100 }}>
+        <View style={styles.tagContainer}>
+          <FlatList
+              data={listTags}
+              horizontal={true}
+              renderItem={({item, index}) => {
+                return(
+                  <View key={index} style={styles.tag}>
+              <Text>#{item}</Text>
+              <AntDesign
+                name="closecircleo"
+                size={28}
+                color="black"
+                onPress={() => {
+                  listTags.splice(item[index]);
+                }}
+              />
+              
+            </View>
+                )
+              }}/>
+        </View>
+        
       </View>
     </View>
   );
@@ -66,5 +113,31 @@ const styles = StyleSheet.create({
   },
   label: {
     marginHorizontal: 16,
+  },
+  addTag: {
+    backgroundColor: "#D88318",
+    padding: 10,
+    width: 85,
+    alignSelf: "flex-end",
+    margin: 16,
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  tagContainer: {
+    height: 100,
+    flex: 1,
+    flexDirection: "row",
+    gap: 20,
+  },
+  tag: {
+    borderWidth: 1,
+    borderRadius: 35,
+    minWidth: 100,
+    maxWidth: 200,
+    height: 50,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
 });

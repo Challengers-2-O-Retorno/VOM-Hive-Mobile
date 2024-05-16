@@ -2,7 +2,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { MaterialIcons } from "@expo/vector-icons";
 import PortalHome from "../screens/PortalHome";
 import { Ionicons } from "@expo/vector-icons";
-import { FontAwesome6 } from '@expo/vector-icons';
+import { FontAwesome6 } from "@expo/vector-icons";
 import Home from "../screens/Home";
 import CadastroCampaign from "../screens/CriarCampaign";
 
@@ -22,10 +22,7 @@ export default function DrawerRoutes() {
         name="Criar campanha"
         component={CadastroCampaign}
         options={{
-          drawerIcon: () => (
-            <FontAwesome6 name="add" size={24} color="black" />
-          ),
-          
+          drawerIcon: () => <FontAwesome6 name="add" size={24} color="black" />,
         }}
       />
       <Screen
@@ -35,9 +32,9 @@ export default function DrawerRoutes() {
           drawerIcon: () => (
             <Ionicons name="exit-outline" size={24} color="black" />
           ),
-          
         }}
       />
+      
     </Navigator>
   );
 }

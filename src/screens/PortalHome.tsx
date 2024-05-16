@@ -14,6 +14,7 @@ export default function PortalHome() {
     const query = await getDocs(collection(db, "campaigns"));
     query.forEach((doc) => {
       const campaign = {
+        id: doc.id,
         logo: doc.data().logo,
         name: doc.data().name,
         category: doc.data().category,
@@ -24,7 +25,6 @@ export default function PortalHome() {
       c.push(campaign);
         console.log(campaign);
     });
-    // console.log("rodou");
   };
 
   useEffect(() => {
@@ -34,14 +34,13 @@ export default function PortalHome() {
   return (
     <View>
       <Text>Reveja suas ultimas campanhas</Text>
-      <View>
+      <View style={styles.container}>
         <FlatList
-          style={[styles.list, {width: screenWidth}]}
           data={campaigns}
           renderItem={({ item }) => {
             return (
               <View style={{borderWidth: 1}} >
-                <Text>{item.category} aqui</Text>
+                <Text style={styles.item} >{item.category} aqui</Text>
               </View>
             );
           }}
@@ -52,7 +51,13 @@ export default function PortalHome() {
 }
 
 const styles = StyleSheet.create({
-  list: {
-    flex: 1,
+  container:{
+    padding: 50,
+    flex: 1
   },
+  item:{
+    padding: 20,
+    fontSize: 15,
+    marginTop: 5,
+  }
 });
