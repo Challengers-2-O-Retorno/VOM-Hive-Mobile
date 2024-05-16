@@ -1,4 +1,12 @@
-import { StyleSheet, Text, View, TextInput, Pressable, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  FlatList,
+  ScrollView
+} from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
@@ -18,8 +26,8 @@ export default function CriarCampaign() {
   const [listTags, setListTags] = useState([]);
 
   return (
-    <View>
-      <Text>Criar campanha</Text>
+    <ScrollView>
+      <Text style={styles.title} >Inicie a sua campanha</Text>
       <View>
         <Text style={styles.label}>Nome da campanha</Text>
         <TextInput style={styles.input} />
@@ -60,9 +68,10 @@ export default function CriarCampaign() {
           <Text
             style={styles.addTag}
             onPress={() => {
-              listTags.push(inputTags);
+              // listTags.push(inputTags);
+              setListTags([...listTags, inputTags]);
               setInputTags("");
-              console.log(listTags)
+              console.log(listTags);
             }}
           >
             Adicionar
@@ -72,32 +81,39 @@ export default function CriarCampaign() {
       <View style={{ height: 100 }}>
         <View style={styles.tagContainer}>
           <FlatList
-              data={listTags}
-              horizontal={true}
-              renderItem={({item, index}) => {
-                return(
-                  <View key={index} style={styles.tag}>
-              <Text>#{item}</Text>
-              <AntDesign
-                name="closecircleo"
-                size={28}
-                color="black"
-                onPress={() => {
-                  listTags.splice(item[index]);
-                }}
-              />
-              
-            </View>
-                )
-              }}/>
+            data={listTags}
+            horizontal={true}
+            renderItem={({ item, index }) => {
+              return (
+                <View key={index} style={styles.tag}>
+                  <Text>#{item}</Text>
+                  <AntDesign
+                    name="closecircleo"
+                    size={28}
+                    color="black"
+                    onPress={() => {
+                      listTags.splice(item[index]);
+                    }}
+                  />
+                </View>
+              );
+            }}
+          />
         </View>
-        
       </View>
-    </View>
+      <Pressable>
+        <Text style={styles.createBtn} >Criar</Text>
+      </Pressable>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  title:{
+    fontSize: 30,
+    marginHorizontal: 16,
+    marginVertical: 40
+  },
   input: {
     margin: 16,
     height: 50,
@@ -140,4 +156,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
   },
+  createBtn:{
+    backgroundColor: "#D88318",
+    textAlign: "center",
+    fontSize: 30,
+    color: "#fff",
+    marginHorizontal: 16,
+    marginBottom: 16
+  }
 });

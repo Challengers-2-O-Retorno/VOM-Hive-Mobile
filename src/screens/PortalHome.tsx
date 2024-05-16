@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Dimensions } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
@@ -6,8 +6,6 @@ import { db } from "../services/firebaseConfig";
 
 export default function PortalHome() {
   const [campaigns, setCampaigns] = useState([]);
-
-  const screenWidth = Dimensions.get('window').width;
 
   const getItems = async () => {
     let c = [];
@@ -23,8 +21,10 @@ export default function PortalHome() {
       };
 
       c.push(campaign);
-        console.log(campaign);
+      // console.log(campaign);
     });
+    setCampaigns(c);
+    console.log(campaigns);
   };
 
   useEffect(() => {
@@ -37,10 +37,10 @@ export default function PortalHome() {
       <View style={styles.container}>
         <FlatList
           data={campaigns}
-          renderItem={({ item }) => {
+          renderItem={({ item, index }) => {
             return (
-              <View style={{borderWidth: 1}} >
-                <Text style={styles.item} >{item.category} aqui</Text>
+              <View key={index} style={{ height: 100 }}>
+                <Text style={styles.item}>{item.category} aqui</Text>
               </View>
             );
           }}
@@ -51,13 +51,14 @@ export default function PortalHome() {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    padding: 50,
-    flex: 1
+  container: {
+    height: 100,
+    flex: 1,
+    gap: 20,
   },
-  item:{
+  item: {
     padding: 20,
     fontSize: 15,
     marginTop: 5,
-  }
+  },
 });
