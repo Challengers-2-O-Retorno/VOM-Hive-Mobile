@@ -1,31 +1,40 @@
-import { StyleSheet, Text, View, FlatList, Image, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Image,
+  Pressable,
+} from "react-native";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../services/firebaseConfig";
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
 
-export default function PortalHome({navigation}) {
+export default function PortalHome({ navigation }) {
   const [campaigns, setCampaigns] = useState([]);
 
   const getItems = async () => {
     let c = [];
-    const query = await getDocs(collection(db, "campaigns"));
-    query.forEach((doc) => {
-      const campaign = {
-        id: doc.id,
-        logo: doc.data().logo,
-        name: doc.data().name,
-        category: doc.data().category,
-        target: doc.data().target,
-        tags: doc.data().tags,
-      };
+    while (c.length <= 1) {
+      const query = await getDocs(collection(db, "campaigns"));
+      query.forEach((doc) => {
+        const campaign = {
+          id: doc.id,
+          logo: doc.data().logo,
+          name: doc.data().name,
+          category: doc.data().category,
+          target: doc.data().target,
+          tags: doc.data().tags,
+        };
 
-      c.push(campaign);
-      // console.log(campaign);
-    });
+        c.push(campaign);
+       
+      });
+    }
     setCampaigns(c);
-    // console.log(campaigns);
+    console.log(campaigns);
   };
 
   useEffect(() => {
@@ -34,11 +43,12 @@ export default function PortalHome({navigation}) {
 
   return (
     <View style={styles.main}>
-      <Text style={styles.title} >Reveja suas ultimas campanhas</Text>
+      <Text style={styles.title}>Reveja suas ultimas campanhas</Text>
       <View style={styles.container}>
         <FlatList
           data={campaigns}
           maxToRenderPerBatch={3}
+          scrollEnabled={false}
           renderItem={({ item, index }) => {
             return (
               <View key={index} style={styles.campaign}>
@@ -50,9 +60,9 @@ export default function PortalHome({navigation}) {
           }}
         />
       </View>
-      <Text>Vai cadastrar uma campanha nova ?</Text>
-      <Pressable onPress={()=> navigation.navigate("CriarCampanha")}>
-        <Text>Comece já</Text>
+      <Text style={styles.linkText}>Vai cadastrar uma campanha nova ?</Text>
+      <Pressable onPress={() => navigation.navigate("CriarCampanha")}>
+        <Text style={styles.linkBtn}>Comece já</Text>
       </Pressable>
     </View>
   );
@@ -61,22 +71,20 @@ export default function PortalHome({navigation}) {
 const styles = StyleSheet.create({
   main: {
     height: "100%",
-    backgroundColor: "#D88318"
+    backgroundColor: "#D88318",
+    flex: 1,
   },
-  title:{
+  title: {
     fontSize: 30,
     margin: 16,
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   container: {
-    height: 100,
-    flex: 1,
-    gap: 20,
+    height: 230,
   },
   campaignText: {
     padding: 20,
     fontSize: 20,
-    
   },
   campaign: {
     flex: 1,
@@ -87,11 +95,22 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     marginBottom: 10,
     marginHorizontal: 16,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
-  campaignImg:{
+  campaignImg: {
     borderRadius: 50,
     width: 60,
-    height: 60
-  }
+    height: 60,
+  },
+  linkText: {
+    fontSize: 25,
+    marginHorizontal: 16,
+  },
+  linkBtn: {
+    backgroundColor: "#fff",
+    padding: 10,
+    textAlign: "center",
+    width: 100,
+    alignSelf: "center",
+  },
 });
