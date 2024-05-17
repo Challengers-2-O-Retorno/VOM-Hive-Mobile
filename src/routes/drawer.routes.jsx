@@ -19,7 +19,7 @@ export default function DrawerRoutes() {
         }}
       />
       <Screen
-        name="Criar campanha"
+        name="CriarCampanha"
         component={CadastroCampaign}
         options={{
           drawerIcon: () => <FontAwesome6 name="add" size={24} color="black" />,
