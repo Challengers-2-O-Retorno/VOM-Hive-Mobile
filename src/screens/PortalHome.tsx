@@ -21,7 +21,6 @@ export default function PortalHome({ navigation }) {
       const query = await getDocs(collection(db, "campaigns"));
       query.forEach((doc) => {
         const campaign = {
-          id: doc.id,
           logo: doc.data().logo,
           name: doc.data().name,
           category: doc.data().category,
@@ -30,7 +29,6 @@ export default function PortalHome({ navigation }) {
         };
 
         c.push(campaign);
-       
       });
     }
     setCampaigns(c);
@@ -51,17 +49,33 @@ export default function PortalHome({ navigation }) {
           scrollEnabled={false}
           renderItem={({ item, index }) => {
             return (
-              <View key={index} style={styles.campaign}>
-                <Image style={styles.campaignImg} source={{ uri: item.logo }} />
-                <Text style={styles.campaignText}>{item.name}</Text>
-                <AntDesign name="arrowright" size={24} color="black" />
-              </View>
+              <Pressable
+                onPress={() =>
+                  navigation.jumpTo("Campaign", {
+                    id: item.id,
+                    logo: item.logo,
+                    name: item.name,
+                    category: item.category,
+                    target: item.target,
+                    tags: item.tags,
+                  })
+                }
+              >
+                <View key={index} style={styles.campaign}>
+                  <Image
+                    style={styles.campaignImg}
+                    source={{ uri: item.logo }}
+                  />
+                  <Text style={styles.campaignText}>{item.name}</Text>
+                  <AntDesign name="arrowright" size={24} color="black" />
+                </View>
+              </Pressable>
             );
           }}
         />
       </View>
       <Text style={styles.linkText}>Vai cadastrar uma campanha nova ?</Text>
-      <Pressable onPress={() => navigation.navigate("CriarCampanha")}>
+      <Pressable onPress={() => navigation.jumpTo("CriarCampanha")}>
         <Text style={styles.linkBtn}>Comece já</Text>
       </Pressable>
     </View>
@@ -110,7 +124,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     padding: 10,
     textAlign: "center",
-    width: 100,
+    width: 250,
     alignSelf: "center",
+    fontSize: 30,
+    margin: 16,
   },
 });

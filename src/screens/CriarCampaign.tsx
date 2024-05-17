@@ -43,7 +43,7 @@ export default function CriarCampaign({ navigation }) {
       });
 
       alert("Campanha criada com sucesso!");
-      navigation.navigate("Home");
+      navigation.jumpTo("Home");
     } catch (error) {
       console.log(error.code);
       alert("Ocorreu algo de errado!");

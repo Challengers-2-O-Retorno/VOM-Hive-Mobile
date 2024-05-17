@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
 import Home from "../screens/Home";
 import CadastroCampaign from "../screens/CriarCampaign";
+import Campaign from "../screens/Campaign";
 
 const { Screen, Navigator } = createDrawerNavigator();
 
@@ -23,6 +24,13 @@ export default function DrawerRoutes() {
         component={CadastroCampaign}
         options={{
           drawerIcon: () => <FontAwesome6 name="add" size={24} color="black" />,
+        }}
+      />
+      <Screen
+        name="Campaign"
+        component={Campaign}
+        options={{
+          drawerItemStyle:{display: 'none'},
         }}
       />
       <Screen
