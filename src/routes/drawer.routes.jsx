@@ -17,6 +17,9 @@ export default function DrawerRoutes() {
         component={PortalHome}
         options={{
           drawerIcon: () => <MaterialIcons name="home" size={34} />,
+          headerStyle: {
+            backgroundColor: "#D88318",
+          },
         }}
       />
       <Screen
@@ -24,13 +27,21 @@ export default function DrawerRoutes() {
         component={CadastroCampaign}
         options={{
           drawerIcon: () => <FontAwesome6 name="add" size={24} color="black" />,
+          drawerLabel: "Criar campanha",
+          headerTitle: "Criar campanha",
+          headerStyle: {
+            backgroundColor: "#D88318",
+          },
         }}
       />
       <Screen
         name="Campaign"
         component={Campaign}
         options={{
-          drawerItemStyle:{display: 'none'},
+          drawerItemStyle: { display: "none" },
+          headerStyle: {
+            backgroundColor: "#D88318",
+          },
         }}
       />
       <Screen
@@ -42,7 +53,6 @@ export default function DrawerRoutes() {
           ),
         }}
       />
-      
     </Navigator>
   );
 }

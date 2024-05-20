@@ -51,109 +51,119 @@ export default function CriarCampaign({ navigation }) {
   };
 
   return (
-    <ScrollView>
-      <Text style={styles.title}>Inicie a sua campanha</Text>
-      <View>
-        <Text style={styles.label}>Nome da campanha</Text>
-        <TextInput
-          style={styles.input}
-          value={name}
-          onChangeText={(value) => setName(value)}
-        />
-      </View>
-      <View>
-        <Text style={styles.label}>Nome do produto</Text>
-        <TextInput
-          style={styles.input}
-          value={prod}
-          onChangeText={(value) => setProd(value)}
-        />
-      </View>
-      <View>
-        <Text style={styles.label}>Link da logo</Text>
-        <TextInput
-          style={styles.input}
-          value={logo}
-          onChangeText={(value) => setLogo(value)}
-        />
-      </View>
-      <View>
-        <Text style={styles.label}>Público alvo</Text>
-        <TextInput
-          style={styles.input}
-          value={target}
-          onChangeText={(value) => setTarget(value)}
-        />
-      </View>
-      <View>
-        <Text style={styles.label}>Categoria do produto</Text>
-        <Dropdown
-          style={styles.input}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          data={data}
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder="Selecione a categoria"
-          value={category}
-          onChange={(item) => {
-            setCategory(item.value);
-          }}
-        />
-      </View>
-      <View>
-        <Text style={styles.label}>Adicione as Tags relevantes</Text>
-        <TextInput
-          style={styles.input}
-          value={inputTags}
-          onChangeText={(value) => setInputTags(value)}
-        />
-        <Pressable>
-          <Text
-            style={styles.addTag}
-            onPress={() => {
-              if (inputTags) {
-                listTags.push(inputTags);
-                setInputTags("");
-              }
-            }}
-          >
-            Adicionar
-          </Text>
-        </Pressable>
-      </View>
-      <View style={{ height: 100 }}>
-        <View style={styles.tagContainer}>
-          <FlatList
-            data={listTags}
-            horizontal={true}
-            renderItem={({ item, index }) => {
-              return (
-                <View key={index} style={styles.tag}>
-                  <Text>#{item}</Text>
-                  <AntDesign
-                    name="closecircleo"
-                    size={28}
-                    color="black"
-                    onPress={() => {
-                      listTags.splice(item[index]);
-                    }}
-                  />
-                </View>
-              );
+    <View style={styles.main}>
+      <ScrollView style={styles.content}>
+        <Text style={styles.title}>Inicie a sua campanha</Text>
+        <View>
+          <Text style={styles.label}>Nome da campanha</Text>
+          <TextInput
+            style={styles.input}
+            value={name}
+            onChangeText={(value) => setName(value)}
+          />
+        </View>
+        <View>
+          <Text style={styles.label}>Nome do produto</Text>
+          <TextInput
+            style={styles.input}
+            value={prod}
+            onChangeText={(value) => setProd(value)}
+          />
+        </View>
+        <View>
+          <Text style={styles.label}>Link da logo</Text>
+          <TextInput
+            style={styles.input}
+            value={logo}
+            onChangeText={(value) => setLogo(value)}
+          />
+        </View>
+        <View>
+          <Text style={styles.label}>Público alvo</Text>
+          <TextInput
+            style={styles.input}
+            value={target}
+            onChangeText={(value) => setTarget(value)}
+          />
+        </View>
+        <View>
+          <Text style={styles.label}>Categoria do produto</Text>
+          <Dropdown
+            style={styles.input}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            data={data}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder="Selecione a categoria"
+            value={category}
+            onChange={(item) => {
+              setCategory(item.value);
             }}
           />
         </View>
-      </View>
-      <Pressable onPress={addItem}>
-        <Text style={styles.createBtn}>Criar</Text>
-      </Pressable>
-    </ScrollView>
+        <View>
+          <Text style={styles.label}>Adicione as Tags relevantes</Text>
+          <TextInput
+            style={styles.input}
+            value={inputTags}
+            onChangeText={(value) => setInputTags(value)}
+          />
+          <Pressable>
+            <Text
+              style={styles.addTag}
+              onPress={() => {
+                if (inputTags) {
+                  listTags.push(inputTags);
+                  setInputTags("");
+                }
+              }}
+            >
+              Adicionar
+            </Text>
+          </Pressable>
+        </View>
+        <View style={{ height: 100 }}>
+          <View style={styles.tagContainer}>
+            <FlatList
+              data={listTags}
+              horizontal={true}
+              renderItem={({ item, index }) => {
+                return (
+                  <View key={index} style={styles.tag}>
+                    <Text>#{item}</Text>
+                    <AntDesign
+                      name="closecircleo"
+                      size={28}
+                      color="black"
+                      onPress={() => {
+                        listTags.splice(item[index]);
+                      }}
+                    />
+                  </View>
+                );
+              }}
+            />
+          </View>
+        </View>
+        <Pressable onPress={addItem}>
+          <Text style={styles.createBtn}>Criar</Text>
+        </Pressable>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  main:{
+    backgroundColor: "#D88318"
+  },
+  content:{
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
+  },
   title: {
     fontSize: 30,
     marginHorizontal: 16,

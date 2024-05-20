@@ -48,7 +48,7 @@ export default function Login({navigation}) {
           <Text style={styles.inputLabel} >Senha</Text>
           <TextInput
             style={styles.input}
-            placeholder="usuario"
+            placeholder="senha"
             secureTextEntry={true}
             value={pass}
             onChangeText={(value) => setPass(value)}
